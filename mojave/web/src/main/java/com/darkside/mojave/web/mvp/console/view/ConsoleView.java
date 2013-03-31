@@ -30,8 +30,9 @@ public class ConsoleView extends View implements IConsoleView{
 		consoleContent = consoleContent.replace("\n", "<br>");
 		Label consoleContentLabel = new Label(consoleContent);
 		consoleContentLabel.setContentMode(Label.CONTENT_XHTML);
-		consoleContentLabel.setWidth(-1, Component.UNITS_PIXELS);
+		consoleContentLabel.setWidth("100%");
+		consoleContentLabel.setStyleName("console-text");
 		this.consoleLabelLayout.addComponent(consoleContentLabel);
-		this.consoleContainer.setScrollTop(consoleLabelLayout.getComponentCount()*100);
+		this.consoleContainer.setScrollTop(0);
 	}
 }

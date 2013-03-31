@@ -14,12 +14,15 @@ public class CollaboratorsView extends View implements ICollaboratorsView{
 	HashMap<User, Label> labels = new HashMap<User, Label>();
 	
 	public CollaboratorsView(){
-		addComponent(new Label("Current Collaborators:"));
+		Label title = new Label("Current Collaborators:");
+		title.setStyleName("collaborators-title");
+		addComponent(title);
 	}
 	
 	@Override
 	public void login(User user) {
 		Label label = new Label(user.getUserName());
+		label.setStyleName("collaborators-text");
 		labels.put(user, label);
 		addComponent(label);
 	}

@@ -33,6 +33,7 @@ public class IDEView extends View implements IIDEView{
         bluePanel.setFirstComponent(blue);
         bluePanel.setSplitPosition(71.5f, Component.UNITS_PERCENTAGE);
         projectTitle.setHeight(25, Component.UNITS_PIXELS);
+        projectTitle.setStyleName("project-title");
         red.addComponent(projectTitle);
         redBlueSplit.setSecondComponent(bluePanel);
         redBlueSplit.setSizeFull();

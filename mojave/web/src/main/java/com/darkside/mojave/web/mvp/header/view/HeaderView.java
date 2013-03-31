@@ -18,6 +18,7 @@ public class HeaderView extends View implements IHeaderView{
 	private Button buildButton = new Button("Build");
 	
 	public HeaderView(){
+		saveButton.setWidth("100px");
 		saveButton.addListener(new ClickListener() {
 			private static final long serialVersionUID = -2532681713979871463L;
 
@@ -27,6 +28,7 @@ public class HeaderView extends View implements IHeaderView{
 			}
 		});
 		
+		buildButton.setWidth("100px");
 		buildButton.addListener(new ClickListener() {
 			private static final long serialVersionUID = -2532681713979871463L;
 
