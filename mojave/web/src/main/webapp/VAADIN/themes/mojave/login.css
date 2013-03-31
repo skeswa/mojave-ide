@@ -1,0 +1,51 @@
+.mojave-login {
+	background: #f4bf90; /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmNGJmOTAiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZWE5MzQ1IiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L3JhZGlhbEdyYWRpZW50PgogIDxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-radial-gradient(center, ellipse cover,  #f4bf90 0%, #ea9345 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#f4bf90), color-stop(100%,#ea9345)); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover,  #f4bf90 0%,#ea9345 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover,  #f4bf90 0%,#ea9345 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover,  #f4bf90 0%,#ea9345 100%); /* IE10+ */
+	background: radial-gradient(ellipse at center,  #f4bf90 0%,#ea9345 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4bf90', endColorstr='#ea9345',GradientType=1 ); /* IE6-8 fallback on horizontal gradient */
+}
+
+.mojave-login-logo {
+	background: url(img/login/mojave-login-logo.png) no-repeat;
+}
+
+.mojave-login input[type="text"],
+.mojave-login input[type="password"] {
+	background-image: none;
+	background-color: #fff;
+	border-radius: 0px;
+	border-width: 0px;
+	padding: 8px 8px 10px;
+	color: #888;
+}
+
+.mojave-login-button .v-label {
+	cursor: pointer;
+}
+
+.mojave-login-button {
+	background-color: #555;
+	text-transform: uppercase;
+	padding: 8px 0px 10px;
+	color: #ddd;
+	text-shadow: 0px 0px 2px #000;
+	cursor: pointer;
+	transition: opacity .25s ease-in-out;
+	opacity: 0.9;
+}
+
+.mojave-login-button:hover {
+	opacity: 0.7;
+	color: #fff;
+}
+
+.mojave-login-button:active {
+	opacity: 1.0;
+	color: #fff;
+}
