@@ -19,13 +19,14 @@ public class CollaboratorsView extends View implements ICollaboratorsView{
 	
 	@Override
 	public void login(User user) {
-		labels.put(user, new Label(user.getUserName()));
-		addComponent(new Label(user.getUserName()));
+		Label label = new Label(user.getUserName());
+		labels.put(user, label);
+		addComponent(label);
 	}
 
 	@Override
 	public void logout(User user) {
 		removeComponent(labels.get(user));
+		labels.remove(user);
 	}
-
 }

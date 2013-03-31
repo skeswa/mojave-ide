@@ -3,6 +3,7 @@ package com.darkside.mojave.web.mvp.ide;
 import java.io.File;
 import java.util.HashSet;
 
+import org.pakhama.vaadin.mvp.event.EventScope;
 import org.pakhama.vaadin.mvp.event.IEventDispatcher;
 import org.phakama.maven.MavenAnalyzer;
 import org.phakama.maven.model.MavenBuildProject;
@@ -66,12 +67,12 @@ public class ProjectSession {
 		User user = MojaveApplicationData.getSession().getUser();
 		if (!users.contains(user)) {
 			users.add(user);
-			dispatcher.dispatch(new ProjectSessionJoinEvent(sessionId, user));
+			dispatcher.dispatch(new ProjectSessionJoinEvent(sessionId, user), EventScope.UNIVERSAL);
 		}
 	}
 
 	public void leaveSession(IEventDispatcher dispatcher){
 		User user = MojaveApplicationData.getSession().getUser();
-		if(users.remove(user)) dispatcher.dispatch(new ProjectSessionLeaveEvent(sessionId, user));
+		if(users.remove(user)) dispatcher.dispatch(new ProjectSessionLeaveEvent(sessionId, user), EventScope.UNIVERSAL);
 	}
 }

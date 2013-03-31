@@ -8,6 +8,9 @@ public class NotificationEvent extends Event{
 	private long sessionId;
 	private String message;
 	
+	public NotificationEvent(){
+	}
+	
 	public NotificationEvent(long sessionId, String message){
 		this.setSessionId(sessionId);
 		this.message = message;

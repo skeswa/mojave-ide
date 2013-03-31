@@ -31,10 +31,10 @@ public class IDEPresenter extends Presenter<IIDEView>{
 	
 	private ProjectSession projectSession;
 	private MojaveSession session;
-
+	private ICEPush pusher;
 	public void init(ProjectSession ps, ICEPush pusher){
 		this.projectSession = ps;
-		
+		this.pusher = pusher;
 		this.session = MojaveApplicationData.getSession();
 		
 		HeaderPresenter headerPresenter = createChild(HeaderPresenter.class);
@@ -46,9 +46,11 @@ public class IDEPresenter extends Presenter<IIDEView>{
 		EditorPresenter editorPresenter = createChild(EditorPresenter.class);
 		editorPresenter.init(ps.getSessionId(), ps.getEs(), pusher);
 		CollaboratorsPresenter collaboratorsPresenter = createChild(CollaboratorsPresenter.class);
-		collaboratorsPresenter.init(ps.getSessionId(), pusher);
+		collaboratorsPresenter.init(ps.getSessionId(), ps, pusher);
 		ConsolePresenter consolePresenter = createChild(ConsolePresenter.class);
 		consolePresenter.init(projectSession.getSessionId(), pusher);
+		
+		projectSession.joinSession(this);
 		
 		getView().setTop(headerPresenter.getView().getComponent());
 		getView().setLeft(fileBrowserPresenter.getView().getComponent());
@@ -80,6 +82,9 @@ public class IDEPresenter extends Presenter<IIDEView>{
 	
 	@EventListener(event = NotificationEvent.class)
 	public void onNotificationEvent(NotificationEvent e){
-		if(e.getSessionId() == projectSession.getSessionId()) getView().printToast(e.getMessage());
+		if(e.getSessionId() == projectSession.getSessionId()){
+			getView().printToast(e.getMessage());
+			pusher.push();
+		}
 	}
 }
