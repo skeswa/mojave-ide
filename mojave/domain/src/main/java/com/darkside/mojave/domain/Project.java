@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Table(name = "projects")
 public class Project extends BaseEntity {
 	private String name;
-	private long repositoryId = -1L;
+	private String path;
 	
 	@OneToMany(cascade = CascadeType.ALL, targetEntity = Build.class)
 	private Set<Build> builds = new HashSet<Build>();
@@ -47,11 +47,12 @@ public class Project extends BaseEntity {
 		return buildConfiguations;
 	}
 
-	public long getRepositoryId() {
-		return repositoryId;
+	public String getPath() {
+		return path;
 	}
 
-	public void setRepositoryId(long repositoryId) {
-		this.repositoryId = repositoryId;
+	public void setPath(String path) {
+		this.path = path;
 	}
+
 }

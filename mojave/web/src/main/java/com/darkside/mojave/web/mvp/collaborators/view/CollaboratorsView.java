@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import org.pakhama.vaadin.mvp.view.impl.View;
 
-import com.darkside.mojave.web.mvp.model.User;
+import com.darkside.mojave.domain.User;
 import com.vaadin.ui.Label;
 
 public class CollaboratorsView extends View implements ICollaboratorsView{

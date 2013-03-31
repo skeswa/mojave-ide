@@ -1,6 +1,5 @@
 package com.darkside.mojave.web.mvp.ide.presenter;
 
-import java.io.File;
 import java.util.Arrays;
 
 import org.pakhama.vaadin.mvp.annotation.event.EventListener;
@@ -13,6 +12,7 @@ import org.phakama.maven.model.MavenBuildProject;
 import org.phakama.maven.model.MavenEnvironmentConfiguration;
 import org.vaadin.artur.icepush.ICEPush;
 
+import com.darkside.mojave.web.MojaveApplicationData;
 import com.darkside.mojave.web.mvp.chat.presenter.ChatPresenter;
 import com.darkside.mojave.web.mvp.collaborators.presenter.CollaboratorsPresenter;
 import com.darkside.mojave.web.mvp.console.event.ConsoleUpdateEvent;
@@ -21,24 +21,28 @@ import com.darkside.mojave.web.mvp.editor.presenter.EditorPresenter;
 import com.darkside.mojave.web.mvp.filebroswer.presenter.FileBrowserPresenter;
 import com.darkside.mojave.web.mvp.header.event.BuildEvent;
 import com.darkside.mojave.web.mvp.header.presenter.HeaderPresenter;
+import com.darkside.mojave.web.mvp.ide.ProjectSession;
 import com.darkside.mojave.web.mvp.ide.event.NotificationEvent;
 import com.darkside.mojave.web.mvp.ide.view.IIDEView;
-import com.darkside.mojave.web.mvp.model.ProjectSession;
+import com.darkside.mojave.web.session.MojaveSession;
 
 public class IDEPresenter extends Presenter<IIDEView>{
 	private static final long serialVersionUID = -9168881220884649657L;
 	
 	private ProjectSession projectSession;
+	private MojaveSession session;
 
-	public void init(ProjectSession ps, String username, ICEPush pusher){
+	public void init(ProjectSession ps, ICEPush pusher){
 		this.projectSession = ps;
+		
+		this.session = MojaveApplicationData.getSession();
 		
 		HeaderPresenter headerPresenter = createChild(HeaderPresenter.class);
 		headerPresenter.init(ps.getSessionId());
 		ChatPresenter chatPresenter = createChild(ChatPresenter.class);
-		chatPresenter.init(ps.getSessionId(), username, pusher);
+		chatPresenter.init(ps.getSessionId(), this.session.getUser().getUserName(), pusher);
 		FileBrowserPresenter fileBrowserPresenter = createChild(FileBrowserPresenter.class);
-		fileBrowserPresenter.init(new File("C:\\Users\\Tom\\Documents\\Personal\\Java\\collabeditor\\src")); //TODO: integrate with Sandizzle
+		fileBrowserPresenter.init(this.projectSession.getBuildProject().getProjectDir()); //TODO: integrate with Sandizzle
 		EditorPresenter editorPresenter = createChild(EditorPresenter.class);
 		editorPresenter.init(ps.getSessionId(), ps.getEs(), pusher);
 		CollaboratorsPresenter collaboratorsPresenter = createChild(CollaboratorsPresenter.class);
@@ -58,9 +62,9 @@ public class IDEPresenter extends Presenter<IIDEView>{
 	@EventListener(event = BuildEvent.class)
 	public void onBuild(BuildEvent e) {
 		MavenBuildProject buildProject = this.projectSession.getBuildProject();
-		// TODO fix
-		MavenEnvironmentConfiguration config = new MavenEnvironmentConfiguration("C:\\Users\\Tom\\Desktop\\stuff\\m2", "C:\\Users\\Tom\\Desktop\\stuff\\logs");
-		MavenBuilder.build(config, buildProject, Arrays.asList("clean", "install"), new MavenBuildRecordCallback(config, buildProject) {
+		MavenEnvironmentConfiguration buildConfig = this.session.getMavenEnvironmentConfiguration();
+		
+		MavenBuilder.build(buildConfig, buildProject, Arrays.asList("clean", "install"), new MavenBuildRecordCallback(buildConfig, buildProject) {
 			
 			@Override
 			public void onLog(String log) {

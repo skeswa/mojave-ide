@@ -49,6 +49,8 @@ public class IDEView extends View implements IIDEView{
         layout.setExpandRatio(mainLayout, 1.0f);
         layout.setSizeFull();
         addComponent(layout);
+        
+        setSizeFull();
 	}
 	
 	@Override
