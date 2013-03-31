@@ -46,7 +46,7 @@ public class IDEPresenter extends Presenter<IIDEView>{
 		EditorPresenter editorPresenter = createChild(EditorPresenter.class);
 		editorPresenter.init(ps.getSessionId(), ps.getEs(), pusher);
 		CollaboratorsPresenter collaboratorsPresenter = createChild(CollaboratorsPresenter.class);
-		collaboratorsPresenter.init(pusher);
+		collaboratorsPresenter.init(ps.getSessionId(), pusher);
 		ConsolePresenter consolePresenter = createChild(ConsolePresenter.class);
 		consolePresenter.init(projectSession.getSessionId(), pusher);
 		

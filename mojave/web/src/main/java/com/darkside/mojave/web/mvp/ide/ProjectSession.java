@@ -3,12 +3,16 @@ package com.darkside.mojave.web.mvp.ide;
 import java.io.File;
 import java.util.HashSet;
 
+import org.pakhama.vaadin.mvp.event.IEventDispatcher;
 import org.phakama.maven.MavenAnalyzer;
 import org.phakama.maven.model.MavenBuildProject;
 
 import com.darkside.mojave.domain.Project;
 import com.darkside.mojave.domain.User;
 import com.darkside.mojave.web.EditorSession;
+import com.darkside.mojave.web.MojaveApplicationData;
+import com.darkside.mojave.web.mvp.collaborators.event.ProjectSessionJoinEvent;
+import com.darkside.mojave.web.mvp.collaborators.event.ProjectSessionLeaveEvent;
 
 public class ProjectSession {
 	private long sessionId;
@@ -56,5 +60,18 @@ public class ProjectSession {
 
 	public void setUsers(HashSet<User> users) {
 		this.users = users;
+	}
+
+	public void joinSession(IEventDispatcher dispatcher){
+		User user = MojaveApplicationData.getSession().getUser();
+		if (!users.contains(user)) {
+			users.add(user);
+			dispatcher.dispatch(new ProjectSessionJoinEvent(sessionId, user));
+		}
+	}
+
+	public void leaveSession(IEventDispatcher dispatcher){
+		User user = MojaveApplicationData.getSession().getUser();
+		if(users.remove(user)) dispatcher.dispatch(new ProjectSessionLeaveEvent(sessionId, user));
 	}
 }

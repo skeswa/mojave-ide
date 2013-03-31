@@ -10,22 +10,29 @@ import com.darkside.mojave.web.mvp.collaborators.view.ICollaboratorsView;
 
 public class CollaboratorsPresenter extends Presenter<ICollaboratorsView>{
 	private static final long serialVersionUID = 7105573403984020137L;
-	
+
 	private ICEPush pusher;
-	
-	public void init(ICEPush pusher){
+	private long sessionId;
+
+	public void init(long sessionId, ICEPush pusher){
 		this.pusher = pusher;
+		this.sessionId = sessionId;
 	}
 
 	@EventListener(event = ProjectSessionJoinEvent.class)
 	public void onUserLogin(ProjectSessionJoinEvent event){
-		getView().login(event.getUser());
-		if(event.isForeign()) pusher.push();
+		if(event.getSessionId() == sessionId){
+			getView().login(event.getUser());
+			pusher.push();
+		}
+
 	}
 
 	@EventListener(event = ProjectSessionLeaveEvent.class)
 	public void onUserLogout(ProjectSessionLeaveEvent event){
-		getView().logout(event.getUser());
-		if(event.isForeign()) pusher.push();
+		if(event.getSessionId() == sessionId){
+			getView().logout(event.getUser());
+			pusher.push();
+		}
 	}
 }

@@ -34,7 +34,7 @@ public class WorkspacePresenter extends Presenter<IWorkspaceView> {
 		// FIXME
 		if (projectSessions.get(1L) == null) {
 			Project testProject = new Project();
-			testProject.setPath("E:\\dev\\repos\\test");
+			testProject.setPath("C:\\Users\\Tom\\Documents\\Personal\\Repositories\\test");
 			testProject.setName("PROJECT");
 
 			ProjectSession testProjectSession = new ProjectSession(43287496L, testProject);

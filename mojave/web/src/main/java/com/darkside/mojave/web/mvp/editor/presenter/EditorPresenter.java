@@ -16,6 +16,7 @@ import org.vaadin.artur.icepush.ICEPush;
 import org.vaadin.diffsync.Shared;
 
 import com.darkside.mojave.web.EditorSession;
+import com.darkside.mojave.web.MojaveApplicationData;
 import com.darkside.mojave.web.mvp.editor.event.SwitchFileEvent;
 import com.darkside.mojave.web.mvp.editor.view.IEditorView;
 import com.darkside.mojave.web.mvp.filebroswer.event.FileOpenEvent;
@@ -42,7 +43,7 @@ public class EditorPresenter extends Presenter<IEditorView>{
 		if(currentFile == null) {
 			dispatch(new NotificationEvent(sessionId, "Nothing to save..."), EventScope.PARENT);
 		}else{
-			dispatch(new NotificationEvent(sessionId, "File Saved"), EventScope.UNIVERSAL);
+			dispatch(new NotificationEvent(sessionId, MojaveApplicationData.getSession().getUser().getUserName() +  " saved " + currentFile.getName()), EventScope.UNIVERSAL);
 			try{
 				FileWriter fstream = new FileWriter(currentFile);
 				BufferedWriter out = new BufferedWriter(fstream);

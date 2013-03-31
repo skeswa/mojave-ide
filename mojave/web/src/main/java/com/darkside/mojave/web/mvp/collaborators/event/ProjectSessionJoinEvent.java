@@ -8,12 +8,14 @@ public class ProjectSessionJoinEvent extends Event{
 	private static final long serialVersionUID = -485390229261381581L;
 
 	private User user;
+	private long sessionId;
 	
 	public ProjectSessionJoinEvent(){
 	}
 	
-	public ProjectSessionJoinEvent(User user){
-		this.setUser(user);
+	public ProjectSessionJoinEvent(long sessionId,User user){
+		this.user = user;
+		this.sessionId = sessionId;
 	}
 
 	public User getUser() {
@@ -22,5 +24,13 @@ public class ProjectSessionJoinEvent extends Event{
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public long getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(long sessionId) {
+		this.sessionId = sessionId;
 	}
 }
