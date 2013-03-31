@@ -6,6 +6,7 @@ import org.pakhama.vaadin.mvp.presenter.impl.Presenter;
 
 import com.darkside.mojave.web.MojaveApplicationData;
 import com.darkside.mojave.web.mvp.header.event.BuildEvent;
+import com.darkside.mojave.web.mvp.header.event.CommitEvent;
 import com.darkside.mojave.web.mvp.header.event.SaveFileEvent;
 import com.darkside.mojave.web.mvp.header.view.IHeaderView;
 import com.darkside.mojave.web.mvp.ide.event.NotificationEvent;
@@ -28,5 +29,11 @@ public class HeaderPresenter extends Presenter<IHeaderView>{
 	public void onBuildButtonClick(BuildEvent event){
 		if(event.getSource() != this) dispatch(event, EventScope.PARENT);
 		dispatch(new NotificationEvent(sessionId, MojaveApplicationData.getSession().getUser().getUserName() +  " requested a build"), EventScope.UNIVERSAL);
+	}
+	
+	@EventListener(event = CommitEvent.class)
+	public void onCommitButtonClick(CommitEvent event){
+		if(event.getSource() != this) dispatch(event, EventScope.PARENT);
+		dispatch(new NotificationEvent(sessionId, MojaveApplicationData.getSession().getUser().getUserName() +  " commited the build"), EventScope.UNIVERSAL);
 	}
 }
