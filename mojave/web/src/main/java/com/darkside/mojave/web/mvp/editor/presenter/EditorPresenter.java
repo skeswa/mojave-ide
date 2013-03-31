@@ -15,7 +15,7 @@ import org.vaadin.aceeditor.collab.gwt.shared.Doc;
 import org.vaadin.artur.icepush.ICEPush;
 import org.vaadin.diffsync.Shared;
 
-import com.darkside.mojave.web.mvp.EditorSession;
+import com.darkside.mojave.web.EditorSession;
 import com.darkside.mojave.web.mvp.editor.event.SwitchFileEvent;
 import com.darkside.mojave.web.mvp.editor.view.IEditorView;
 import com.darkside.mojave.web.mvp.filebroswer.event.FileOpenEvent;

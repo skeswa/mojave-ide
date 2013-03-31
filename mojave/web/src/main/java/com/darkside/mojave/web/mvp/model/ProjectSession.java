@@ -6,7 +6,7 @@ import java.util.HashSet;
 import org.phakama.maven.MavenAnalyzer;
 import org.phakama.maven.model.MavenBuildProject;
 
-import com.darkside.mojave.web.mvp.EditorSession;
+import com.darkside.mojave.web.EditorSession;
 
 public class ProjectSession {
 	private long sessionId;

@@ -174,13 +174,18 @@
 			<version>${vaadin.version}</version>
 		</dependency>
 
-		<!-- MVP -->
+		<!-- Phakama -->
 		<dependency>
 			<groupId>org.pakhama</groupId>
 			<artifactId>org.pakhama.vaadin.mvp</artifactId>
 			<version>0.0.4.1</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.phakama</groupId>
+			<artifactId>org.phakama.maven</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 		<!-- MySQL -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -212,6 +217,13 @@
 			<groupId>org.phakama</groupId>
 			<artifactId>org.phakama.vaadin.github</artifactId>
 			<version>0.0.1</version>
+		</dependency>
+
+		<!-- Collab Editor -->
+		<dependency>
+			<groupId>org.vaadin</groupId>
+			<artifactId>collabaceeditor</artifactId>
+			<version>0.3.1</version>
 		</dependency>
 
 		<!-- GWT -->

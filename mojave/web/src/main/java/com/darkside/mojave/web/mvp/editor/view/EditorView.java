@@ -10,7 +10,7 @@ import org.vaadin.aceeditor.collab.gwt.shared.Doc;
 import org.vaadin.artur.icepush.ICEPush;
 import org.vaadin.diffsync.Shared;
 
-import com.darkside.mojave.web.mvp.CollaborativeEditor;
+import com.darkside.mojave.web.CollaborativeEditor;
 import com.darkside.mojave.web.mvp.editor.event.SwitchFileEvent;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.TabSheet;
